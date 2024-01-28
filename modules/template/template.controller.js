@@ -1,3 +1,4 @@
+const { sendWelcomeMail } = require("../../utils/sendMail");
 const Template = require("./template.model");
 const { generateLink } = require("./template.service");
 
@@ -42,7 +43,25 @@ const getTemplateById = async (req, res) => {
   }
 };
 
+const sendSourceCode = async (req, res) => {
+  try {
+    const result = await sendWelcomeMail(req.body);
+    console.log(result);
+    res.status(200).json({
+      success: true,
+      message: "Template Send Success",
+    });
+  } catch (error) {
+    res.status(201).json({
+      success: false,
+      message: "Template Send Failed",
+      error_message: error.message,
+    });
+  }
+};
+
 module.exports = {
   createTemplate,
   getTemplateById,
+  sendSourceCode,
 };
