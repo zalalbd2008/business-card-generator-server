@@ -6,6 +6,7 @@ const path = require("path");
 
 // routes
 const templateRoutes = require("./modules/template/template.routes");
+const ticketRoutes = require("./modules/ticket/ticket.routes");
 
 const app = express();
 const http = require("http");
@@ -22,6 +23,7 @@ connectDB();
 
 // routes
 app.use("/api/v1/templates", templateRoutes);
+app.use("/api/v1/tickets", ticketRoutes);
 
 // static file serving
 app.use("/api/v1/uploads", express.static(path.join(__dirname, "/")));
