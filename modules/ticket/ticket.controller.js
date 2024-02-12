@@ -1,14 +1,21 @@
+const { sendTicketMail } = require("../../utils/sendMail");
 const Ticket = require("./ticket.model");
 
 const createTicket = async (req, res) => {
   try {
     const newTicket = new Ticket(req.body);
-    const result = await newTicket.save();
-    res.status(200).json({
-      success: true,
-      message: "Ticket Create Success",
-      data: result,
+    const isSended = await sendTicketMail({
+      ...req.body,
+      url: `${process.env.CLIENT_URL}/templates/${newTicket?._id}`,
     });
+    if (isSended) {
+      const result = await newTicket.save();
+      res.status(200).json({
+        success: true,
+        message: "Ticket Create Success",
+        data: result,
+      });
+    }
   } catch (error) {
     res.status(201).json({
       success: false,
@@ -59,6 +66,7 @@ const matchTicket = async (req, res) => {
     const isExist = await Ticket.findOne({
       _id: req.params.id,
     });
+    console.log(isExist);
     if (isExist) {
       if (isExist.email === req.body.email && isExist.code === req.body.code) {
         res.status(200).json({
@@ -69,7 +77,7 @@ const matchTicket = async (req, res) => {
         });
       } else {
         res.status(201).json({
-          success: false,
+          success: true,
           message: "Ticket Credentials Not Valid",
           valid: false,
           data: null,

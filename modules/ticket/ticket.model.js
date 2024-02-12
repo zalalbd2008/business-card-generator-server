@@ -6,7 +6,7 @@ const ticketSchema = new mongoose.Schema(
       type: Object,
       required: true,
     },
-    url: {
+    template_no: {
       type: String,
       required: true,
     },
