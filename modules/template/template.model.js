@@ -12,6 +12,10 @@ const TemplateSchema = new mongoose.Schema(
       type: Object,
       required: true,
     },
+    template_no: {
+      type: String,
+      required: true,
+    },
     // template_img: {
     //   type: String,
     //   required: true,
