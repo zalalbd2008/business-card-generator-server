@@ -6,10 +6,6 @@ const ticketSchema = new mongoose.Schema(
       type: Object,
       required: true,
     },
-    template_no: {
-      type: String,
-      required: true,
-    },
     code: {
       type: String,
       required: true,

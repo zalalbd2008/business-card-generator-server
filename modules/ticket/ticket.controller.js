@@ -66,7 +66,6 @@ const matchTicket = async (req, res) => {
     const isExist = await Ticket.findOne({
       _id: req.params.id,
     });
-    console.log(isExist);
     if (isExist) {
       if (isExist.email === req.body.email && isExist.code === req.body.code) {
         res.status(200).json({

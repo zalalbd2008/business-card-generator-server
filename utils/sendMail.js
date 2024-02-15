@@ -59,7 +59,7 @@ const sendTicketMail = async (data) => {
   const mailOptions = {
     from: process.env.MAIL_USER,
     to: data?.email,
-    subject: ``,
+    subject: `Ticket`,
     html: `
     <body style="background-color: white; margin: 0; padding: 0;">
     <div style="padding: 10px">
