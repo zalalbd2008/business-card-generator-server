@@ -52,11 +52,10 @@ const updateTemplateById = async (req, res) => {
       req.body,
       { new: true }
     );
-    const getAgain = await Template.findById({ _id: req.params.id });
     res.status(200).json({
       success: true,
       message: "Template Update Success",
-      data: getAgain,
+      data: result,
     });
   } catch (error) {
     res.status(201).json({
