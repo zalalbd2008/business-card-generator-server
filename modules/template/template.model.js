@@ -16,6 +16,11 @@ const TemplateSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    dcard_id: {
+      type: Number,
+      required: true,
+      default: 1,
+    },
     // template_img: {
     //   type: String,
     //   required: true,
