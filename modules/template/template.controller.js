@@ -43,6 +43,30 @@ const getTemplateById = async (req, res) => {
   }
 };
 
+const updateTemplateById = async (req, res) => {
+  try {
+    const result = await Template.updateOne(
+      {
+        _id: req.params.id,
+      },
+      req.body,
+      { new: true }
+    );
+
+    res.status(200).json({
+      success: true,
+      message: "Template Update Success",
+      data: result,
+    });
+  } catch (error) {
+    res.status(201).json({
+      success: false,
+      message: "Template Update Failed",
+      error_message: error.message,
+    });
+  }
+};
+
 const sendSourceCode = async (req, res) => {
   try {
     const result = await sendWelcomeMail(req.body);
@@ -64,4 +88,5 @@ module.exports = {
   createTemplate,
   getTemplateById,
   sendSourceCode,
+  updateTemplateById,
 };
