@@ -69,7 +69,6 @@ const updateTemplateById = async (req, res) => {
 const sendSourceCode = async (req, res) => {
   try {
     const result = await sendWelcomeMail(req.body);
-    console.log(result);
     res.status(200).json({
       success: true,
       message: "Template Send Success",
