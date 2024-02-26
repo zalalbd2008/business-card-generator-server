@@ -5,7 +5,7 @@ const nodemailer = require("nodemailer");
 const generateToken = async (user) => {
   return jwt.sign(
     {
-      full_name: user.full_name,
+      role: user.role,
       email: user.email,
       _id: user?._id,
     },

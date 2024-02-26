@@ -5,12 +5,11 @@ const PORT = process.env.PORT || 8000;
 const path = require("path");
 
 // routes
+const userRoutes = require("./modules/user/user.routes");
 const templateRoutes = require("./modules/template/template.routes");
 const ticketRoutes = require("./modules/ticket/ticket.routes");
 
 const app = express();
-const http = require("http");
-const Server = http.createServer(app);
 
 // middleware
 app.use(cors());
@@ -22,6 +21,7 @@ app.use(
 connectDB();
 
 // routes
+app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/templates", templateRoutes);
 app.use("/api/v1/tickets", ticketRoutes);
 
@@ -35,6 +35,6 @@ app.get("/", (req, res) => {
   res.send("Server is running");
 });
 
-Server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Server is Running PORT: ${PORT}`);
 });
