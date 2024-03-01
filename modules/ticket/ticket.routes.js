@@ -4,6 +4,8 @@ const {
   getTicketById,
   getTickets,
   matchTicket,
+  removeTicket,
+  getTicketByToken,
 } = require("./ticket.controller");
 
 const router = express.Router();
@@ -11,6 +13,8 @@ const router = express.Router();
 router.post("/create", createTicket);
 router.get("/", getTickets);
 router.get("/:id", getTicketById);
-router.post("/isMatched/:id", matchTicket);
+router.get("/ticket-info/:token", getTicketByToken);
+router.post("/isMatched", matchTicket);
+router.delete("/:id", removeTicket);
 
 module.exports = router;

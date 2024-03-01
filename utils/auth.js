@@ -16,6 +16,24 @@ const generateToken = async (user) => {
   );
 };
 
+const generateTicketToken = async (data) => {
+  return jwt.sign(
+    {
+      email: data?.email,
+      code: data?.code,
+      _id: data?._id,
+    },
+    process.env.TICKET_JWT_TOKEN,
+    {
+      expiresIn: "365d",
+    }
+  );
+};
+
+const getTicketToken = async (token) => {
+  return jwt.verify(token, process.env.TICKET_JWT_TOKEN);
+};
+
 const forgotPasswordToken = async (data) => {
   return jwt.sign(data, process.env.ACCESS_TOKEN_SECRET, {
     expiresIn: "1h",
@@ -94,6 +112,7 @@ style="background-color: #d9eee4; padding:10px; font-size:14px;color:#003399;lin
 
 module.exports = {
   generateToken,
+  generateTicketToken,
   sendVerificationCode,
-  forgotPasswordToken,
+  getTicketToken,
 };

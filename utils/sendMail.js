@@ -200,16 +200,51 @@ const sendTicketMail = async (data) => {
     to: data?.email,
     subject: `Ticket`,
     html: `
-    <body style="background-color: white; margin: 0; padding: 0;">
-    <div style="padding: 10px; max-width: 600px; width: 100%; font-family: 'Cabin', sans-serif; text-align: center; background-color: #ffff;">
-        <h1 style="font-size: 24px; text-align: center; font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Your Ticket Information</h1>
-        <div style="margin-top: 20px;">
-            <p style="font-size: 18px; text-align: left;">Thank you for purchasing a ticket. Here are the details:</p>
-            <p style="font-size: 18px; text-align: left;"><strong>Email:</strong> ${data?.email}</p>
-            <p style="font-size: 18px; text-align: left;"><strong>Code:</strong> ${data?.code}</p>
+    <body
+    style="background-color: rgba(212, 208, 208, 0.625); margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+    <div style="background-color: white; height: 100vh; max-width: 700px; margin:0 auto;">
+        <div style=" height: fit-content; cursor: pointer; max-width: 600px; margin:0 auto;padding-top: 100px;">
+            <div style="width: 100%; background-color: orange; border-radius: 5px; ">
+                <h3
+                    style="text-align: center; font-weight: 700; text-transform: uppercase; color: white; margin:0px ; padding: 15px 0px;">
+                    Ticket Information</h3>
+            </div>
+
+            <p
+                style="font-size: 20px; text-align: center; font-weight: 700; color: rgba(16, 15, 15, 0.873); padding-top: 8px; margin:0px">
+                Thank you for purchasing a ticket. Here are the details</p>
+
+
+            <p style="margin-top: 50px; text-align: center; display: block; padding-top: 8px;">
+                <span
+                    style="font-size: 20px; font-weight: 700; color: rgba(16, 15, 15, 0.873);  margin:0px; padding-right: 10px; display: inline;">
+                    Email:</span>
+                <span
+                    style="font-size: 20px; font-weight: 500; color: rgba(16, 15, 15, 0.873); margin:0px;display: inline;">
+                    ${data?.email}</span>
+            </p>
+            <div
+                style="width: 100%; border-radius: 4px; border: 1px solid rgba(128, 128, 128, 0.635); margin-top: 20px; padding: 15px 0; text-align: center;">
+                <span
+                    style="font-size: 20px; text-align: center; font-weight: 700; color: rgba(16, 15, 15, 0.873);  margin:0px; display: inline;">
+                    Code:</span>
+                <span
+                    style="font-size: 20px; text-align: center; font-weight: 500; color: rgba(16, 15, 15, 0.873);  margin:0px; display: inline;">
+                    ${data?.code}</span>
+            </div>
+
+            <a href=${data?.url} target="_blank"
+                style="display: block; width: 130px; height: 35px; background-color: orange; border: none; border-radius: 3px; color:white; text-decoration: none; line-height: 35px; margin: 20px auto; text-align:center">Use
+                Ticket <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3"
+                    stroke="currentColor" style="width: 20px; height: 15px;">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m15 15 6-6m0 0-6-6m6 6H9a6 6 0 0 0 0 12h3" />
+                </svg>
+            </a>
         </div>
-        <a href=${data?.url} target="_blank" style="display: block; width: 110px; height: 35px; background-color: orange; border: none; border-radius: 3px; color:white; text-decoration: none; line-height: 35px; margin: 20px auto;">Use Ticket</a>
     </div>
+
+
 </body>
   `,
   };

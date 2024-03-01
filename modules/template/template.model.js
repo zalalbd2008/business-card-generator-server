@@ -2,12 +2,10 @@ const mongoose = require("mongoose");
 
 const TemplateSchema = new mongoose.Schema(
   {
-    // user: {
-    //   type: mongoose.Schema.Types.ObjectId,
-    //   ref: "User",
-    //   required: false,
-    // },
-
+    email: {
+      type: Object,
+      required: true,
+    },
     template: {
       type: Object,
       required: true,
@@ -21,10 +19,6 @@ const TemplateSchema = new mongoose.Schema(
       required: true,
       default: 1,
     },
-    // template_img: {
-    //   type: String,
-    //   required: true,
-    // },
     template_link: {
       type: String,
       required: true,

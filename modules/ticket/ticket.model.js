@@ -4,6 +4,7 @@ const ticketSchema = new mongoose.Schema(
   {
     email: {
       type: Object,
+      unique: true,
       required: true,
     },
     code: {

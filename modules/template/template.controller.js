@@ -4,17 +4,33 @@ const { generateLink } = require("./template.service");
 
 const createTemplate = async (req, res) => {
   try {
-    const link = await generateLink();
-    if (link) {
-      req.body["template_link"] = link;
+    const isExist = await Template.findOne({ email: req.body?.email });
+    if (isExist) {
+      const updateResult = await Template.updateOne(
+        {
+          _id: req.params.id,
+        },
+        req.body,
+        { new: true }
+      );
+      res.status(200).json({
+        success: true,
+        message: "Template Update Success",
+        data: updateResult,
+      });
+    } else {
+      const link = await generateLink();
+      if (link) {
+        req.body["template_link"] = link;
+      }
+      const newNewTemplate = new Template(req.body);
+      const result = await newNewTemplate.save();
+      res.status(200).json({
+        success: true,
+        message: "Template Create Success",
+        data: result,
+      });
     }
-    const newNewTemplate = new Template(req.body);
-    const result = await newNewTemplate.save();
-    res.status(200).json({
-      success: true,
-      message: "Template Create Success",
-      data: result,
-    });
   } catch (error) {
     res.status(201).json({
       success: false,
