@@ -8,7 +8,7 @@ const createTemplate = async (req, res) => {
     if (isExist) {
       const updateResult = await Template.updateOne(
         {
-          _id: req.params.id,
+          _id: isExist?._id.toString(),
         },
         req.body,
         { new: true }
