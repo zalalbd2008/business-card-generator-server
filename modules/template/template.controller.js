@@ -13,10 +13,11 @@ const createTemplate = async (req, res) => {
         req.body,
         { new: true }
       );
+      const template = await Template.findOne({ _id: isExist?._id.toString() });
       res.status(200).json({
         success: true,
         message: "Template Update Success",
-        data: updateResult,
+        data: template,
       });
     } else {
       const link = await generateLink();
