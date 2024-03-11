@@ -16,7 +16,7 @@ const createTicket = async (req, res) => {
       const newTicket = new Ticket(req.body);
       const isSended = await sendTicketMail({
         ...req.body,
-        url: `${process.env.CLIENT_URL}/templates/ticket-verification/new`,
+        url: `${process.env.CLIENT_URL}/ticket-verification/new`,
       });
       if (isSended) {
         const result = await newTicket.save();
